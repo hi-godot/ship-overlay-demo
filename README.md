@@ -1,5 +1,9 @@
 # Ship Overlay Demo
 
+> Built with help from [Godot AI MCP](https://github.com/hi-godot/godot-ai) —
+> an MCP server + editor plugin that lets AI assistants drive the Godot editor
+> ([Godot Asset Store page](https://store.godotengine.org/asset/dlight/godot-ai/)).
+
 A tiny Godot 4 demo of rendering a 3D object **on top of** UI — here, a spaceship
 that stays in front of a "between levels" menu instead of being covered by it.
 
