@@ -3,6 +3,8 @@
 A tiny Godot 4 demo of rendering a 3D object **on top of** UI — here, a spaceship
 that stays in front of a "between levels" menu instead of being covered by it.
 
+![demo](docs/demo.gif)
+
 Godot draws all 3D below all `CanvasLayer`s, so a naive scene can't ever put the
 ship above the menu:
 
