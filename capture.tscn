@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://capture.gd" id="1_cap"]
+[ext_resource type="PackedScene" uid="uid://d08205qpdvv2m" path="res://ship_overlay_demo.tscn" id="2_demo"]
+
+[node name="Capture" type="Node"]
+script = ExtResource("1_cap")
+
+[node name="Demo" parent="." instance=ExtResource("2_demo")]

@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://d08205qpdvv2m"]
+
+[ext_resource type="Script" uid="uid://b0oc3xym2ds3l" path="res://ship_overlay_demo.gd" id="1_3yrwu"]
+[ext_resource type="Material" uid="uid://bk5vh83xsnarq" path="res://ship_overlay_demo_hull.tres" id="2_6og8w"]
+[ext_resource type="Material" uid="uid://ctreallss8x24" path="res://ship_overlay_demo_engine.tres" id="3_gchvt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ugkg"]
+sky_top_color = Color(0.019607844, 0.02745098, 0.101960786, 1)
+sky_horizon_color = Color(0.14117648, 0.101960786, 0.3019608, 1)
+ground_bottom_color = Color(0.019607844, 0.02745098, 0.101960786, 1)
+ground_horizon_color = Color(0.14117648, 0.101960786, 0.3019608, 1)
+
+[sub_resource type="Sky" id="Sky_svy6w"]
+sky_material = SubResource("ProceduralSkyMaterial_5ugkg")
+
+[sub_resource type="Environment" id="Environment_ba6ol"]
+background_mode = 2
+sky = SubResource("Sky_svy6w")
+ambient_light_source = 2
+ambient_light_color = Color(0.2, 0.22, 0.35, 1)
+ambient_light_energy = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_hanav"]
+size = Vector3(0.7, 0.32, 2.2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ca4ku"]
+size = Vector3(0.7, 0.9, 0.32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0p3en"]
+size = Vector3(1.7, 0.06, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qcpbf"]
+size = Vector3(1.7, 0.06, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqlwc"]
+albedo_color = Color(0.34117648, 0.84313726, 1, 1)
+emission_enabled = true
+emission = Color(0.34117648, 0.84313726, 1, 1)
+emission_energy_multiplier = 1.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_ifhky"]
+radius = 0.22
+height = 0.34
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nl4js"]
+top_radius = 0.12
+bottom_radius = 0.16
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_odchg"]
+top_radius = 0.12
+bottom_radius = 0.16
+height = 0.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yrwu"]
+bg_color = Color(0.07058824, 0.08235294, 0.10980392, 0.98039216)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9607843, 0.65882355, 0.23529412, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ShipOverlayDemo" type="Node3D" unique_id=2074103602]
+script = ExtResource("1_3yrwu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1933975423]
+environment = SubResource("Environment_ba6ol")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1639691328]
+transform = Transform3D(0.8660254, -0.28678823, 0.40957603, 0, 0.81915206, 0.57357645, -0.5, -0.49673176, 0.7094065, 0, 0, 0)
+light_energy = 1.4
+light_cull_mask = 4294967293
+
+[node name="MainCamera" type="Camera3D" parent="." unique_id=241175354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 5)
+current = true
+
+[node name="Ship" type="Node3D" parent="." unique_id=1670558062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05, 0)
+
+[node name="Hull" type="MeshInstance3D" parent="Ship" unique_id=335135162]
+layers = 2
+material_override = ExtResource("2_6og8w")
+mesh = SubResource("BoxMesh_hanav")
+
+[node name="Nose" type="MeshInstance3D" parent="Ship" unique_id=1630626422]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -1.55)
+layers = 2
+material_override = ExtResource("2_6og8w")
+mesh = SubResource("PrismMesh_ca4ku")
+
+[node name="WingL" type="MeshInstance3D" parent="Ship" unique_id=359312922]
+transform = Transform3D(0.95105654, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.95105654, -1, -0.05, 0.5)
+layers = 2
+material_override = ExtResource("2_6og8w")
+mesh = SubResource("BoxMesh_0p3en")
+
+[node name="WingR" type="MeshInstance3D" parent="Ship" unique_id=2046665387]
+transform = Transform3D(0.95105654, 0, 0.309017, 0, 1, 0, -0.309017, 0, 0.95105654, 1, -0.05, 0.5)
+layers = 2
+material_override = ExtResource("2_6og8w")
+mesh = SubResource("BoxMesh_qcpbf")
+
+[node name="Cockpit" type="MeshInstance3D" parent="Ship" unique_id=1657591864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -0.55)
+layers = 2
+material_override = SubResource("StandardMaterial3D_uqlwc")
+mesh = SubResource("SphereMesh_ifhky")
+
+[node name="EngineL" type="MeshInstance3D" parent="Ship" unique_id=257406871]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.28, 0, 1.2)
+layers = 2
+material_override = ExtResource("3_gchvt")
+mesh = SubResource("CylinderMesh_nl4js")
+
+[node name="EngineR" type="MeshInstance3D" parent="Ship" unique_id=390777733]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.28, 0, 1.2)
+layers = 2
+material_override = ExtResource("3_gchvt")
+mesh = SubResource("CylinderMesh_odchg")
+
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=197958310]
+
+[node name="MenuRoot" type="Control" parent="MenuLayer" unique_id=21092134]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="MenuLayer/MenuRoot" unique_id=1881113167]
+custom_minimum_size = Vector2(540, 320)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -145.0
+offset_right = 265.0
+offset_bottom = 145.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3yrwu")
+
+[node name="Margin" type="MarginContainer" parent="MenuLayer/MenuRoot/Panel" unique_id=1079989912]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="MenuLayer/MenuRoot/Panel/Margin" unique_id=1051473073]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MenuLayer/MenuRoot/Panel/Margin/VBox" unique_id=1216335832]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.65882355, 0.23529412, 1)
+theme_override_font_sizes/font_size = 30
+text = "MISSION COMPLETE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MenuLayer/MenuRoot/Panel/Margin/VBox" unique_id=475647611]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098039, 0.8509804, 0.6901961, 1)
+theme_override_font_sizes/font_size = 13
+text = "CHOOSE AN UPGRADE"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="MenuLayer/MenuRoot/Panel/Margin/VBox" unique_id=713606248]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Card1" type="Button" parent="MenuLayer/MenuRoot/Panel/Margin/VBox/Cards" unique_id=2082047587]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+text = "Enemy Sensor
+Disruption
+
++2s destroy bonus"
+
+[node name="Card2" type="Button" parent="MenuLayer/MenuRoot/Panel/Margin/VBox/Cards" unique_id=1386697278]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+text = "Ground Effect
+Thrusters
+
++50 m/s low alt"
+
+[node name="Card3" type="Button" parent="MenuLayer/MenuRoot/Panel/Margin/VBox/Cards" unique_id=368869927]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+text = "Autocannon
+Calibration
+
++800 m range"
+
+[node name="Confirm" type="Button" parent="MenuLayer/MenuRoot/Panel/Margin/VBox" unique_id=52700904]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Confirm"
+
+[node name="ShipOverlayLayer" type="CanvasLayer" parent="." unique_id=14338285]
+layer = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ShipOverlayLayer" unique_id=1588559377]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+stretch = true
+
+[node name="ShipViewport" type="SubViewport" parent="ShipOverlayLayer/SubViewportContainer" unique_id=1065403854]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="OverlayCamera" type="Camera3D" parent="ShipOverlayLayer/SubViewportContainer/ShipViewport" unique_id=898824966]
+cull_mask = 2
+current = true
+
+[node name="HintLayer" type="CanvasLayer" parent="." unique_id=505291198]
+layer = 10
+
+[node name="ModeLabel" type="Label" parent="HintLayer" unique_id=1124357448]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 17.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 15
+
+[node name="ShipLight" type="OmniLight3D" parent="." unique_id=1147504843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 4)
+layers = 2
+light_energy = 3.0
+light_cull_mask = 2
+omni_range = 30.0
